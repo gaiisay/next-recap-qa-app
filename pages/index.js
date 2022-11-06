@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import styled from 'styled-components'
 import useSWR from 'swr'
 import LoadingSpinner from '../components/LoadingSpinner'
@@ -11,9 +12,6 @@ function LandingPage() {
 
   return (
     <>
-      <Head>
-        <title>Ask away!</title>
-      </Head>
       <section>
         <h1>Ask a dev!</h1>
         <p>
@@ -25,7 +23,15 @@ function LandingPage() {
       <section>
         <StyledList>
           {questions?.map((question) => {
-            return <li key={question.id}>{question.question}</li>
+            return (
+              <li key={question.id}>
+                <Link href={`/${question.id}`}>
+                  <div>
+                    <h2>{question.question}</h2>
+                  </div>
+                </Link>
+              </li>
+            )
           })}
         </StyledList>
       </section>
@@ -39,12 +45,15 @@ const StyledList = styled.ul`
 
   li {
     margin: 2rem;
-    padding: 1.5rem;
     border-radius: 10px;
     background-color: #6d9886;
-    font-size: 1.4rem;
     overflow-wrap: break-word;
     max-width: 50vw;
+    transition: 0.5s;
+  }
+
+  div {
+    padding: 1.5rem;
   }
 `
 

@@ -53,10 +53,10 @@ const StyledNav = styled.nav`
     height: 100%;
   }
 `
+
 const StyledLink = styled(Link)`
   background-color: ${({ active }) => (active ? '#A2CEBB' : '#515361')};
   text-decoration: none;
-  color: white;
   font-size: 2rem;
   list-style: none;
   display: flex;
