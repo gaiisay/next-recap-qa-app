@@ -14,7 +14,7 @@ function NavBar({ active }) {
               href="/"
               active={pathname === '/'}
             >
-              Start
+              Home
             </StyledLink>
           </li>
           <li>
@@ -51,6 +51,7 @@ const StyledNav = styled.nav`
     align-items: center;
     width: 100%;
     height: 100%;
+    border: 1px solid black;
   }
 `
 
