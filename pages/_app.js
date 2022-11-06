@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import GlobalStyles from '../components/GlobalStyles'
+import Layout from '../components/Layout'
 
 function MyApp({ Component, pageProps }) {
   const { asPath, isReady } = useRouter()
@@ -13,7 +15,10 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <Component {...pageProps} />
+      <GlobalStyles />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </>
   )
 }
