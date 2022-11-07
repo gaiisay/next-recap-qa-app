@@ -5,7 +5,7 @@ function QuestionAnswerList({ questions, answers }) {
   if (questions) {
     return (
       <StyledList>
-        {questions?.map((question) => {
+        {questions.map((question) => {
           return (
             <li key={question.id}>
               <Link href={`/${question.id}`}>
@@ -15,6 +15,7 @@ function QuestionAnswerList({ questions, answers }) {
                   <p>
                     {new Date(question.submissionDate).toLocaleDateString()}
                   </p>
+                  <p>{question.closed ? '🔏' : '🖋️'}</p>
                 </div>
               </Link>
             </li>

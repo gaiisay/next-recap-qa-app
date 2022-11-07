@@ -9,6 +9,10 @@ import { fetcher, sendAnswer } from '../../helpers/api'
 export default function Question() {
   const router = useRouter()
   const { questionId } = router.query
+  async function addAnswer(answer) {
+    await sendAnswer(question.id, answer)
+    mutate()
+  }
 
   const {
     data: question,
@@ -17,11 +21,6 @@ export default function Question() {
   } = useSWR(`/api/questions/${questionId}`, fetcher)
   if (error) return <div>failed to load</div>
   if (!question) return <LoadingSpinner />
-
-  function addAnswer(answer) {
-    sendAnswer(question.id, answer)
-    mutate(`/api/questions/${questionId}`)
-  }
 
   return (
     <>

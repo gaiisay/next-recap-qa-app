@@ -27,6 +27,9 @@ const GlobalStyles = createGlobalStyle`
 
   section {
     margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   a {

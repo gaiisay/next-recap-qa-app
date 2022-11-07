@@ -1,10 +1,16 @@
 import useSWR from 'swr'
+import AddQuestionOrAnswer from '../components/AddQuestionOrAnswer'
 import LoadingSpinner from '../components/LoadingSpinner'
 import QuestionAnswerList from '../components/QuestionAnswerList'
-import { fetcher } from '../helpers/api'
+import { fetcher, sendQuestion } from '../helpers/api'
 
 function LandingPage() {
-  const { data: questions } = useSWR('/api/questions', fetcher)
+  const { data: questions, mutate } = useSWR('/api/questions', fetcher)
+
+  async function addQuestion(question) {
+    await sendQuestion(question)
+    mutate()
+  }
 
   if (!questions) return <LoadingSpinner />
 
@@ -20,6 +26,7 @@ function LandingPage() {
       </section>
       <section>
         <QuestionAnswerList questions={questions} />
+        <AddQuestionOrAnswer onAdd={addQuestion} />
       </section>
     </>
   )
