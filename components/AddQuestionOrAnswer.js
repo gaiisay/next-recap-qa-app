@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import styled from 'styled-components'
 
 function AddQuestionOrAnswer({ onAdd, buttonText = 'Send.' }) {
   const [isAddOpen, setIsAddOpen] = useState(false)
@@ -8,13 +9,13 @@ function AddQuestionOrAnswer({ onAdd, buttonText = 'Send.' }) {
     <div>
       {isAddOpen ? (
         <>
-          <button
+          <StyledButton
             aria-label="close submission form"
             onClick={() => setIsAddOpen(false)}
           >
             x
-          </button>
-          <form
+          </StyledButton>
+          <StyledForm
             onSubmit={(event) => {
               event.preventDefault()
 
@@ -30,19 +31,48 @@ function AddQuestionOrAnswer({ onAdd, buttonText = 'Send.' }) {
               value={questionInput}
               onChange={(event) => setQuestionInput(event.target.value)}
             />
-            <button type="submit">{buttonText}</button>
-          </form>
+            <StyledButton type="submit">{buttonText}</StyledButton>
+          </StyledForm>
         </>
       ) : (
-        <button
+        <StyledButton
           aria-label="expand submission form"
           onClick={() => setIsAddOpen(true)}
         >
           +
-        </button>
+        </StyledButton>
       )}
     </div>
   )
 }
+
+const StyledButton = styled.button`
+  width: 99px;
+  height: 40px;
+
+  background: #6d9886;
+  border-radius: 100px;
+  font-size: 1.5rem;
+  cursor: pointer;
+`
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+  width: 50vw;
+
+  background: #515361;
+  border-radius: 28px;
+  font-size: 1.2rem;
+
+  textarea {
+    height: 100px;
+    width: 300px;
+    background-color: lightgray;
+  }
+`
 
 export default AddQuestionOrAnswer
